@@ -21,7 +21,8 @@ def search_categories(search):
         "International Payments": ["Transferwise"],
         "Entertainment": ["Deezer", "Netflix"],
         "Haircut": ["Hair", "Macmillan"],
-        "Account Fee": ["Account Fee"]
+        "Account Fee": ["Account Fee"],
+        "Savings": ["Savings"],
     }
     for key, value in categories.items():
         for x in value:
@@ -38,27 +39,35 @@ def main(args):
 
         expenses = {"Date": [], "Amount": [], "Balance": [], "Description": [], "Category": []}
         income = {"Date": [], "Amount": [], "Balance": [], "Description": [], "Category": []}
+        savings = {"Date": [], "Amount": []}
+
         for i, row in df.iterrows():
-            if row.Amount <= 0:
-                df.at[i, 'Amount'] = abs(row.Amount)
-                df.at[i, 'Category'] = search_categories(df.at[i, 'Description'])
-                expenses["Date"].append(df.at[i, 'Date'])
-                expenses["Amount"].append(df.at[i, 'Amount'])
-                expenses["Balance"].append(df.at[i, 'Balance'])
-                expenses["Description"].append(df.at[i, 'Description'])
-                expenses["Category"].append(df.at[i, 'Category'])
+            df.at[i, 'Category'] = search_categories(df.at[i, 'Description'])
+            if df.at[i, 'Category'].lower() != 'Savings'.lower():
+                if row.Amount <= 0:
+                    df.at[i, 'Amount'] = abs(row.Amount)
+                    expenses["Date"].append(df.at[i, 'Date'])
+                    expenses["Amount"].append(df.at[i, 'Amount'])
+                    expenses["Balance"].append(df.at[i, 'Balance'])
+                    expenses["Description"].append(df.at[i, 'Description'])
+                    expenses["Category"].append(df.at[i, 'Category'])
+                else:
+                    income["Date"].append(df.at[i, 'Date'])
+                    income["Amount"].append(df.at[i, 'Amount'])
+                    income["Balance"].append(df.at[i, 'Balance'])
+                    income["Description"].append(df.at[i, 'Description'])
+                    income["Category"].append(df.at[i, 'Category'])
             else:
-                income["Date"].append(df.at[i, 'Date'])
-                income["Amount"].append(df.at[i, 'Amount'])
-                income["Balance"].append(df.at[i, 'Balance'])
-                income["Description"].append(df.at[i, 'Description'])
-                income["Category"].append(df.at[i, 'Category'])
+                savings["Date"].append(df.at[i, 'Date'])
+                savings["Amount"].append(abs(df.at[i, 'Amount']))
 
         df_expenses = pd.DataFrame(expenses, columns=colnames)
         df_income = pd.DataFrame(income, columns=colnames)
+        df_savings = pd.DataFrame(savings, columns=colnames)
 
         df_expenses.to_csv(args.csv.replace('.csv', '') + '_expenses.csv')
         df_income.to_csv(args.csv.replace('.csv', '') + '_income.csv')
+        df_savings.to_csv(args.csv.replace('.csv', '') + '_savings.csv')
 
 
 if __name__ == "__main__":
