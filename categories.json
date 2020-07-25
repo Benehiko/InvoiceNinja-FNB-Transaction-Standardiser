@@ -1,0 +1,66 @@
+{
+  "Food": [
+    "WoolWorths",
+    "PnP",
+    "Checkers",
+    "Lindt"
+  ],
+  "Petrol": [
+    "Engen",
+    "MBT",
+    "Sasol",
+    "Total"
+  ],
+  "Clothing": [
+    "Mr Price",
+    "Clothing"
+  ],
+  "Data/Airtime": [
+    "CellC",
+    "Prepaid",
+    "Vodacom",
+    "MTN"
+  ],
+  "Parking": [
+    "Parking"
+  ],
+  "Hosting": [
+    "Google",
+    "Afrihost",
+    "Azure",
+    "Xeneelo"
+  ],
+  "Cash Withdrawal": [
+    "ATM",
+    "Cash"
+  ],
+  "Restaurant": [
+    "Cafe",
+    "Restaurant",
+    "CoffeeShop"
+  ],
+  "International Payments": [
+    "Transferwise",
+    "Paypal"
+  ],
+  "Entertainment": [
+    "Deezer",
+    "Netflix",
+    "Spotify",
+    "ShowMax",
+    "Dstv"
+  ],
+  "Haircut": [
+    "Hair"
+  ],
+  "Account Fee": [
+    "Account Fee"
+  ],
+  "Savings": [
+    "Savings"
+  ],
+  "Internet": [
+    "Rain",
+    "Fibre"
+  ]
+}

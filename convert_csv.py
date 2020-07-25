@@ -1,4 +1,6 @@
 import argparse
+import json
+
 import pandas as pd
 
 
@@ -9,21 +11,9 @@ def args_parser():
 
 
 def search_categories(search):
-    categories = {
-        "Food": ["WoolWorths", "PnP", "Checkers", "Lindt"],
-        "Petrol": ["Engen", "MBT", "Sasol", "Total"],
-        "Clothing": ["Mr Price", "Forever New"],
-        "Data/Airtime": ["CellC", "Prepaid", "Vodacom"],
-        "Parking": ["Parking"],
-        "Hosting": ["Google", "Afrihost"],
-        "Cash Withdrawal": ["ATM", "Cash"],
-        "Restaurant": ["Doppio Zero", "Hazelwood", "Cafe", "Aroma"],
-        "International Payments": ["Transferwise"],
-        "Entertainment": ["Deezer", "Netflix"],
-        "Haircut": ["Hair", "Macmillan"],
-        "Account Fee": ["Account Fee"],
-        "Savings": ["Savings"],
-    }
+    with open('categories.json', 'r') as f:
+        categories = json.load(f)
+
     for key, value in categories.items():
         for x in value:
             if x.lower() in search.lower():
